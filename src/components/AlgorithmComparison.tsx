@@ -10,7 +10,7 @@ interface AlgorithmComparisonProps {
 
 export const AlgorithmComparison: React.FC<AlgorithmComparisonProps> = ({ fcfs, sjf, rr }) => {
   const results = [fcfs, sjf, rr];
-  
+
   // Calculate total waiting times
   const resultsWithTotals = results.map((res) => {
     const totalWT = res.processResults.reduce((acc, curr) => acc + curr.waitingTime, 0);

@@ -47,16 +47,18 @@ export const InputPanel: React.FC<InputPanelProps> = ({
       </div>
 
       {/* Validation Error Banner */}
-      {errors.length > 0 && (
-        <div className="alert-error">
-          <span className="alert-icon">⚠️</span>
-          <div className="alert-content">
-            {errors.map((err, idx) => (
-              <div key={idx}>{err}</div>
-            ))}
+      {
+        errors.length > 0 && (
+          <div className="alert-error">
+            <span className="alert-icon">⚠️</span>
+            <div className="alert-content">
+              {errors.map((err, idx) => (
+                <div key={idx}>{err}</div>
+              ))}
+            </div>
           </div>
-        </div>
-      )}
+        )
+      }
 
       <div className="input-grid">
         <div className="table-responsive">

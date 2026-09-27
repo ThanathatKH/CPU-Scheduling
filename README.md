@@ -1,75 +1,68 @@
-# React + TypeScript + Vite
+1. ชื่อโครงการ:
+ CPU Scheduling Simulator(จำลอง FCFS, SJF Non-preemptive และ Round Robin โดยกำหนดให้ Arrival Time = 0)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+2. รายชื่อสมาชิกและบทบาทหน้าที่ (Team Members & Roles)
+ระบุรายละเอียดของสมาชิกในกลุ่มพร้อมหน้าที่รับผิดชอบชัดเจนทั้ง 3 ตำแหน่ง:
+   1️⃣ นภมณฑล นอขุนทด 1680707526 = Algorithm & Logic Developer/UI/UX Developer
+   2️⃣ **[ชื่อสมาชิกคนที่ 2]** - **[รหัสนักศึกษา]** = [หน้าที่]
+   3️⃣ **[ชื่อสมาชิกคนที่ 3]** - **[รหัสนักศึกษา]** = [หน้าที่]
+   5️⃣ **[ชื่อสมาชิกคนที่ 3]** - **[รหัสนักศึกษา]** = [หน้าที่]
+   6️⃣ **[ชื่อสมาชิกคนที่ 3]** - **[รหัสนักศึกษา]** = [หน้าที่]
 
-Currently, two official plugins are available:
+Tester & Video Editor: ผู้คำนวณมือเพื่อตรวจสอบผลลัพธ์ จัดทำ README และตัดต่อวิดีโอนำเสนอทั้ง 2 ส่วน
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+3. เครื่องมือและเทคโนโลยีที่ใช้ (Tools & Environment)
+ภาษา/เฟรมเวิร์ก: React / TypeScript
+เครื่องมือ/เบราว์เซอร์ที่รองรับ: Google Chrome / Microsoft Edge (เวอร์ชันล่าสุด)
+ซอฟต์แวร์อื่น ๆ : Antigravity IDE
 
-## React Compiler
+4. วิธีการติดตั้งและใช้งานโปรแกรม (Installation & Usage Instructions)
+เปิดผ่านเว็บเบราเซอร์ https://cpu-scheduling-ebon.vercel.app/
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+5. ชุดข้อมูลตัวอย่างสำหรับทดสอบ (Test Cases / Sample Data)
+แสดงชุดข้อมูลตัวอย่างอย่างน้อย 3 กรณีตามเงื่อนไขโจทย์:
+Case 1 (Manual Input): ชุดข้อมูลกรอกเอง เช่น 3 โปรเซส (P1=5, P2=2, P3=8) พร้อมแสดงค่าคำนวณมือเพื่อพิสูจน์ความถูกต้องของ ST, CT, TAT, WT, AVG WT
+Case 2 (Random Input): ตัวอย่างผลลัพธ์จากการใช้ระบบสุ่มค่า Burst Time
+Case 3 (Time Quantum Variations): ผลลัพธ์ของ Round Robin เมื่อใช้ชุดข้อมูลเดิมแต่เปลี่ยนค่า Quantum (เช่น TQ = 2 เทียบกับ TQ = 4)
 
-## Expanding the ESLint configuration
+6. ข้อมูลการประยุกต์ใช้ AI อย่างโปร่งใส (AI Usage & Prompts)
+เครื่องมือ AI ที่ใช้: gemini, Antigravity IDE
+ขั้นตอนที่นำ AI มาช่วย: ใช้ Gemini ในการช่วยเขียน TOR โดยให้เราทำการออกแบบระบบให้ทาง gemini ก่อนว่าอยากได้ระบบแบบไหน แล้วใช้ Gemini ในการช่วยเขียน TOR และสร้างเป็น prompt ออกมาเพื่อสั่งให้ Antigravity ด้วยเขียนโค้ดเป็นโปรแกรมออกมาตาม TOR ที่เราเขียนไว้
+ตัวอย่าง Prompt สำคัญ:
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+  ต่อไปนี้จะทำโปรแกรมสำหรับคำนวณ CPU Scheduling โดยจะมี การคำนวณให้เลือกได้แก่ FCFS, SJF, หรือ Round Robin โดย Process ขั้นต่ำกำหนดให้มี 3 อัน P1,P2,P3 และสามารถเพิ่มได้อีกเรื่อย ๆ เช่น P4,P5,P6... และให้เรากำหนดค่า Burst Time เองในแต่ละ Process และในส่วนของ Round Robin ให้เรากำหนดค่า Time Quantum เอง ส่วนค่า Arrival Time ให้กำหนดค่า defualt เป็น 0 โปรแกรมมีเงื่อนไขดังนี้
+  ผู้ใช้สามารถกำหนดค่า Burst Time: BT ได้ 2 วิธี
+  1.ให้ระบบสุ่มค่า Burst Time เป็นจำนวนเต็มบวก
+  2.ให้ผู้ใช้กรอกค่า Burst Time ของแต่ละโปรเซสด้วยตนเอง
+  จำนวนโปรเซสและ Burst Time ต้องเป็นจำนวนเต็มบวก
+  สำหรับ Round Robin ผู้ใช้สามารถกำหนดค่า ได้ โดยมีค่าเริ่มต้นเป็น Time Quantum = 2
+  เมื่อประมวลผลแล้ว โปรแกรมต้องแสดงผลลัพธ์เป็นตาราง โดยอย่างน้อยต้องประกอบด้วยข้อมูลต่อไปนี้
+  Process ชื่อโปรเซส เช่น P1, P2 และ P3
+  BT Burst Time หรือเวลาที่โปรเซสต้องการใช้ CPU
+  ST Start Time หรือเวลาที่โปรเซสได้ใช้ CPU ครั้งแรก
+  CT Completion Time หรือเวลาที่โปรเซสทำงานเสร็จสมบูรณ์
+  TAT Turnaround Time
+  WT Waiting Time
+  ให้คำนวณโดยใช้สูตร TAT = CT - AT และ WT = TAT - BT
+  เนื่องจากโจทย์นี้กำหนดให้ทุกโปรเซสมี AT = 0 จึงได้ว่า TAT = CT
+  สำหรับ Round Robin โปรเซสหนึ่งอาจได้รับ CPU หลายครั้ง ให้กำหนด ST เป็นเวลาที่โปรเซสได้รับ CPU และกำหนด CT เป็นเวลาที่โปรเซสทำงานเสร็จสมบูรณ์
+  โปรแกรมต้องรายงานค่า ของแต่ละอัลกอริทึมด้วย
+  AVG WT = ผลรวม Waiting Time ของทุกโปรเซส ÷ จำนวนโปรเซส
+  ต้องสามารถเลือกดูผลลัพธ์ของ FCFS, SJF และ RR ได้อย่างชัดเจน โดยใช้ชุดข้อมูลเดียวกันเพื่อเปรียบเทียบผลของแต่ละอัลกอริทึม
+  เงื่อนไข validation
+  โปรแกรมต้องตรวจสอบข้อมูลที่ผู้ใช้กรอกและแสดงข้อความแจ้งเตือนเมื่อพบข้อผิดพลาด เช่น
+  ไม่กรอกจำนวนโปรเซส
+  จำนวนโปรเซสเป็น 0 หรือติดลบ
+  Burst Time ไม่ใช่จำนวนเต็มบวก
+  Time Quantum ไม่ใช่จำนวนเต็มบวก
+  กรอกข้อมูลไม่ครบทุกโปรเซส
+  สรุปเป็น TOR ออกมาให้ดูหน่อย
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+กระบวนการตรวจสอบ (Verification): ทำการตรวจสอบฟังชั่นและแนวทางที่ai เขียนมาให้โดยสรุปได้ดังนี้
+  เมื่อมีการกรอกข้อมูลลงในช่อง BT ระบบจะมีการตรวจสอบอยู่ว่าช่อง input มีการกรอกค่าไหมถ้ามีการกรอกค่าลงไปในช่อง input ระบบจะทำการคำนวณทั้ง FCFS, SJF และ RR ทันทีและเมื่อกดปุ่ม 🚀 Process (คำนวณผลลัพธ์)ระบบจะทำการแสดงผลที่หลังบ้านทำการคำนวณไว้ออกมา 
+  และมีแถบแสดผลลัพธ์ว่า ทั้ง FCFS, SJF และ RR อันไหนแสดงค่า AVG WT ออกมาเพื่อเอาไว้เปรียบเทียบว่าตัวไหนใช้เวลาน้อยที่สุด 
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+7. ลิงก์วิดีโอนำเสนอ (Video Links)
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
-```
-
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
-```
+Link วิดีโอส่วนที่ 1: วิดีโออธิบายการทำงานและสาธิตโปรแกรม
+Link วิดีโอส่วนที่ 2: วิดีโอเบื้องหลังการใช้ AI
