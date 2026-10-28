@@ -1,4 +1,4 @@
-import type { ProcessInput, ProcessResult, AlgorithmResult } from '../types/scheduling';
+import type { ProcessInput, ProcessResult, AlgorithmResult, GanttSegment } from '../types/scheduling';
 
 // Color palette for processes
 export const PROCESS_COLORS = [
@@ -16,6 +16,18 @@ export const PROCESS_COLORS = [
 
 export const getProcessColor = (index: number): string => {
   return PROCESS_COLORS[index % PROCESS_COLORS.length];
+};
+
+/**
+ * Get distinct color for a process consistently based on its name (P1, P2, ...)
+ */
+export const getProcessColorByName = (name: string): string => {
+  const match = name.match(/\d+/);
+  if (match) {
+    const num = parseInt(match[0], 10);
+    return PROCESS_COLORS[(num - 1 + PROCESS_COLORS.length) % PROCESS_COLORS.length];
+  }
+  return PROCESS_COLORS[0];
 };
 
 /**
@@ -56,6 +68,7 @@ export const validateInputs = (
 export const calculateFCFS = (processes: ProcessInput[]): AlgorithmResult => {
   let currentTime = 0;
   const processResults: ProcessResult[] = [];
+  const ganttSegments: GanttSegment[] = [];
 
   processes.forEach((p) => {
     const bt = Number(p.burstTime);
@@ -63,6 +76,13 @@ export const calculateFCFS = (processes: ProcessInput[]): AlgorithmResult => {
     const completionTime = startTime + bt;
     const turnaroundTime = completionTime - p.arrivalTime; // AT = 0
     const waitingTime = turnaroundTime - bt;
+
+    ganttSegments.push({
+      processId: p.id,
+      processName: p.name,
+      startTime,
+      endTime: completionTime,
+    });
 
     processResults.push({
       id: p.id,
@@ -86,6 +106,7 @@ export const calculateFCFS = (processes: ProcessInput[]): AlgorithmResult => {
     algorithmName: 'FCFS (First-Come, First-Served)',
     algorithmKey: 'fcfs',
     processResults,
+    ganttSegments,
     avgWaitingTime: Number((totalWT / n).toFixed(2)),
     avgTurnaroundTime: Number((totalTAT / n).toFixed(2)),
     totalExecutionTime: currentTime,
@@ -102,6 +123,7 @@ export const calculateSJF = (processes: ProcessInput[]): AlgorithmResult => {
     originalIndex,
   }));
 
+  // Tie-breaker rule: if BT is equal, use original process order P1–Pn
   const sortedProcesses = [...indexedProcesses].sort((a, b) => {
     if (a.burstTimeNum !== b.burstTimeNum) {
       return a.burstTimeNum - b.burstTimeNum;
@@ -111,6 +133,7 @@ export const calculateSJF = (processes: ProcessInput[]): AlgorithmResult => {
 
   let currentTime = 0;
   const resultMap = new Map<string, ProcessResult>();
+  const ganttSegments: GanttSegment[] = [];
 
   sortedProcesses.forEach((p) => {
     const bt = p.burstTimeNum;
@@ -118,6 +141,13 @@ export const calculateSJF = (processes: ProcessInput[]): AlgorithmResult => {
     const completionTime = startTime + bt;
     const turnaroundTime = completionTime - p.arrivalTime;
     const waitingTime = turnaroundTime - bt;
+
+    ganttSegments.push({
+      processId: p.id,
+      processName: p.name,
+      startTime,
+      endTime: completionTime,
+    });
 
     resultMap.set(p.id, {
       id: p.id,
@@ -133,6 +163,7 @@ export const calculateSJF = (processes: ProcessInput[]): AlgorithmResult => {
     currentTime = completionTime;
   });
 
+  // Preserve original process order for display
   const processResults = processes.map((p) => resultMap.get(p.id)!);
 
   const totalWT = processResults.reduce((acc, curr) => acc + curr.waitingTime, 0);
@@ -143,6 +174,7 @@ export const calculateSJF = (processes: ProcessInput[]): AlgorithmResult => {
     algorithmName: 'SJF (Shortest Job First - Non-Preemptive)',
     algorithmKey: 'sjf',
     processResults,
+    ganttSegments,
     avgWaitingTime: Number((totalWT / n).toFixed(2)),
     avgTurnaroundTime: Number((totalTAT / n).toFixed(2)),
     totalExecutionTime: currentTime,
@@ -159,6 +191,7 @@ export const calculateRoundRobin = (
   const remBT: { [id: string]: number } = {};
   const startTimeMap: { [id: string]: number } = {};
   const completionTimeMap: { [id: string]: number } = {};
+  const ganttSegments: GanttSegment[] = [];
 
   processes.forEach((p) => {
     remBT[p.id] = Number(p.burstTime);
@@ -171,13 +204,22 @@ export const calculateRoundRobin = (
     const currentProc = readyQueue.shift()!;
     const pId = currentProc.id;
 
+    // Start time is recorded when the process first gets CPU
     if (startTimeMap[pId] === undefined) {
       startTimeMap[pId] = currentTime;
     }
 
     const execTime = Math.min(remBT[pId], timeQuantum);
+    const start = currentTime;
     currentTime += execTime;
     remBT[pId] -= execTime;
+
+    ganttSegments.push({
+      processId: pId,
+      processName: currentProc.name,
+      startTime: start,
+      endTime: currentTime,
+    });
 
     if (remBT[pId] > 0) {
       readyQueue.push(currentProc);
@@ -213,8 +255,10 @@ export const calculateRoundRobin = (
     algorithmName: `Round Robin (Time Quantum = ${timeQuantum})`,
     algorithmKey: 'rr',
     processResults,
+    ganttSegments,
     avgWaitingTime: Number((totalWT / n).toFixed(2)),
     avgTurnaroundTime: Number((totalTAT / n).toFixed(2)),
     totalExecutionTime: currentTime,
   };
 };
+

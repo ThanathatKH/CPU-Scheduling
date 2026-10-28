@@ -1,6 +1,7 @@
 import React from 'react';
 import type { AlgorithmResult } from '../types/scheduling';
-import { getProcessColor } from '../utils/schedulingAlgorithms';
+import { getProcessColorByName } from '../utils/schedulingAlgorithms';
+import { GanttChart } from './GanttChart';
 
 interface ResultTableProps {
   result: AlgorithmResult;
@@ -18,11 +19,22 @@ export const ResultTable: React.FC<ResultTableProps> = ({ result, isBest }) => {
         {isBest && <span className="winner-tag">🏆 Best Performance</span>}
       </div>
 
+      {/* Gantt Chart Timeline */}
+      {result.ganttSegments && result.ganttSegments.length > 0 && (
+        <GanttChart
+          segments={result.ganttSegments}
+          totalTime={result.totalExecutionTime}
+          algorithmName={result.algorithmName}
+        />
+      )}
+
+      {/* Metrics Table */}
       <div className="table-responsive">
         <table className="clean-table">
           <thead>
             <tr>
               <th>Process</th>
+              <th>Arrival Time (AT)</th>
               <th>Burst Time (BT)</th>
               <th>Start Time (ST)</th>
               <th>Completion Time (CT)</th>
@@ -31,14 +43,17 @@ export const ResultTable: React.FC<ResultTableProps> = ({ result, isBest }) => {
             </tr>
           </thead>
           <tbody>
-            {result.processResults.map((proc, index) => (
+            {result.processResults.map((proc) => (
               <tr key={proc.id}>
                 <td className="font-semibold">
                   <span
                     className="color-dot inline-dot"
-                    style={{ backgroundColor: getProcessColor(index) }}
+                    style={{ backgroundColor: getProcessColorByName(proc.name) }}
                   />
                   {proc.name}
+                </td>
+                <td>
+                  <span className="badge-fixed">{proc.arrivalTime}</span>
                 </td>
                 <td>{proc.burstTime}</td>
                 <td>{proc.startTime}</td>
@@ -50,7 +65,7 @@ export const ResultTable: React.FC<ResultTableProps> = ({ result, isBest }) => {
           </tbody>
           <tfoot>
             <tr className="summary-row">
-              <td colSpan={4} className="text-right font-bold">Averages:</td>
+              <td colSpan={5} className="text-right font-bold">Averages:</td>
               <td className="tat-text font-bold">AVG TAT: {result.avgTurnaroundTime}</td>
               <td><span className="wt-badge highlight">AVG WT: {result.avgWaitingTime}</span></td>
             </tr>
@@ -60,3 +75,4 @@ export const ResultTable: React.FC<ResultTableProps> = ({ result, isBest }) => {
     </div>
   );
 };
+
