@@ -462,5 +462,6 @@ npm run dev
 
 ## 7. ลิงก์วิดีโอนำเสนอ (Video Links)
 
-Link วิดีโอส่วนที่ 1: วิดีโออธิบายการทำงานและสาธิตโปรแกรม
-Link วิดีโอส่วนที่ 2: วิดีโอเบื้องหลังการใช้ AI
+วิดีโอส่วนที่ 1: วิดีโออธิบายการทำงานและสาธิตโปรแกรม Link: https://youtu.be/ofcceNa2m6c?si=o_IIEAxnC-G7Jr4G
+
+วิดีโอส่วนที่ 2: วิดีโอเบื้องหลังการใช้ AI Link: https://drive.google.com/file/d/1Add4xAaJTwCWHeJYMhN_WmIXnSjnwPce/view?usp=sharing%0D%0A%0D%0A%0D%0A%E0%B8%A5%E0%B8%B4%E0%B9%89%E0%B8%87%E0%B8%84%E0%B9%8C%20%E0%B8%AD%E0%B8%98%E0%B8%B4%E0%B8%9A%E0%B8%B2%E0%B8%A2%E0%B9%80%E0%B8%9A%E0%B8%B7%E0%B9%89%E0%B8%AD%E0%B8%87%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%87%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%97%E0%B8%B3%E0%B8%87%E0%B8%B2%E0%B8%99%E0%B8%82%E0%B8%AD%E0%B8%87%20ai
