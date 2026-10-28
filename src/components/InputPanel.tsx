@@ -1,6 +1,6 @@
 import React from 'react';
 import type { ProcessInput } from '../types/scheduling';
-import { getProcessColor } from '../utils/schedulingAlgorithms';
+import { getProcessColorByName } from '../utils/schedulingAlgorithms';
 
 interface InputPanelProps {
   processes: ProcessInput[];
@@ -72,12 +72,12 @@ export const InputPanel: React.FC<InputPanelProps> = ({
               </tr>
             </thead>
             <tbody>
-              {processes.map((p, index) => (
+              {processes.map((p) => (
                 <tr key={p.id}>
                   <td className="font-semibold">
                     <span
                       className="color-dot inline-dot"
-                      style={{ backgroundColor: getProcessColor(index) }}
+                      style={{ backgroundColor: getProcessColorByName(p.name) }}
                     />
                     {p.name}
                   </td>

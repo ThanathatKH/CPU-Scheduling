@@ -16,11 +16,20 @@ export interface ProcessResult {
   waitingTime: number;
 }
 
+export interface GanttSegment {
+  processId: string;
+  processName: string;
+  startTime: number;
+  endTime: number;
+}
+
 export interface AlgorithmResult {
   algorithmName: string;
   algorithmKey: 'fcfs' | 'sjf' | 'rr';
   processResults: ProcessResult[];
+  ganttSegments: GanttSegment[];
   avgWaitingTime: number;
   avgTurnaroundTime: number;
   totalExecutionTime: number;
 }
+
