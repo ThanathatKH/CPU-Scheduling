@@ -136,6 +136,10 @@ npm run dev
 
 **AVG WT = (0 + 5 + 7) ÷ 3 = 4.00**
 
+ภาพการคำนวณมือ
+<img width="2160" height="1280" alt="IMG_0533" src="https://github.com/user-attachments/assets/7a5d9d6a-6be1-4b61-90f5-8756ce87eab6" />
+
+
 ---
 
 ### ⚡ ผลลัพธ์ SJF (เรียง BT น้อย → มาก: P2 → P1 → P3)
@@ -153,6 +157,10 @@ npm run dev
 | P3 | 8 | 7 | 15 | 15 | 7 |
 
 **AVG WT = (0 + 2 + 7) ÷ 3 = 3.00** ✅ (ต่ำที่สุดตามทฤษฎี)
+
+ภาพการคำนวณมือ
+<img width="2160" height="1321" alt="IMG_0534" src="https://github.com/user-attachments/assets/3bb89d02-53ba-4a4d-93f5-a2342f739c63" />
+
 
 ---
 
@@ -173,6 +181,10 @@ npm run dev
 > ⚠️ สำหรับ RR: **ST** = เวลาที่ได้ CPU ครั้งแรก, **CT** = เวลาทำงานเสร็จ (อาจได้ CPU หลายรอบ)
 
 **AVG WT = (6 + 2 + 7) ÷ 3 = 5.00**
+
+ภาพการคำนวณมือ
+<img width="2160" height="1339" alt="IMG_0535" src="https://github.com/user-attachments/assets/349a95c4-b76a-493f-ba80-94b7fc94cead" />
+
 
 ---
 
