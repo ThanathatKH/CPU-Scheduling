@@ -139,6 +139,9 @@ npm run dev
 ภาพการคำนวณมือ
 <img width="2160" height="1280" alt="IMG_0533" src="https://github.com/user-attachments/assets/7a5d9d6a-6be1-4b61-90f5-8756ce87eab6" />
 
+ภาพจากโปรแกรม
+<img width="1052" height="503" alt="image" src="https://github.com/user-attachments/assets/0b527ee7-2b97-47be-8106-a071a470bdab" />
+
 
 ---
 
@@ -161,6 +164,8 @@ npm run dev
 ภาพการคำนวณมือ
 <img width="2160" height="1321" alt="IMG_0534" src="https://github.com/user-attachments/assets/3bb89d02-53ba-4a4d-93f5-a2342f739c63" />
 
+ภาพจากโปรแกรม
+<img width="1055" height="503" alt="image" src="https://github.com/user-attachments/assets/abc83a59-53b9-4e25-ab21-8857546dd47a" />
 
 ---
 
@@ -184,6 +189,9 @@ npm run dev
 
 ภาพการคำนวณมือ
 <img width="2160" height="1339" alt="IMG_0535" src="https://github.com/user-attachments/assets/349a95c4-b76a-493f-ba80-94b7fc94cead" />
+
+ภาพจากโปรแกรม
+<img width="1055" height="497" alt="image" src="https://github.com/user-attachments/assets/9db0c069-fd08-4340-aa88-62ac64f8c3b8" />
 
 
 ---
