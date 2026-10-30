@@ -179,6 +179,7 @@ export function App() {
                 <ResultTable
                   result={currentSelectedResult}
                   isBest={currentSelectedResult.avgWaitingTime === minAvgWT}
+                  noGanttScroll={true}
                 />
               </div>
             )}

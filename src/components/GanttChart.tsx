@@ -6,9 +6,10 @@ interface GanttChartProps {
   segments: GanttSegment[];
   totalTime: number;
   algorithmName?: string;
+  noScroll?: boolean;
 }
 
-export const GanttChart: React.FC<GanttChartProps> = ({ segments, totalTime }) => {
+export const GanttChart: React.FC<GanttChartProps> = ({ segments, totalTime, noScroll = true }) => {
   if (!segments || segments.length === 0 || totalTime <= 0) {
     return null;
   }
@@ -43,12 +44,12 @@ export const GanttChart: React.FC<GanttChartProps> = ({ segments, totalTime }) =
         </div>
       </div>
 
-      {/* Scrollable Container for the Gantt bar and timeline */}
-      <div className="gantt-scrollable-container">
+      {/* Container for the Gantt bar and timeline (scrollable or fit-to-width) */}
+      <div className={`gantt-scrollable-container ${noScroll ? 'no-scroll' : ''}`}>
         {/* Colorful Segmented Timeline Bar */}
         <div
           className="gantt-chart-bar"
-          style={{ minWidth: `${Math.max(480, totalTime * 28)}px` }}
+          style={noScroll ? { width: '100%', minWidth: 0 } : { minWidth: `${Math.max(480, totalTime * 28)}px` }}
         >
           {segments.map((seg, idx) => {
             const duration = seg.endTime - seg.startTime;
@@ -73,14 +74,20 @@ export const GanttChart: React.FC<GanttChartProps> = ({ segments, totalTime }) =
         {/* Time Markers Axis below the bar */}
         <div
           className="gantt-timeline-axis"
-          style={{ minWidth: `${Math.max(480, totalTime * 28)}px` }}
+          style={noScroll ? { width: '100%', minWidth: 0 } : { minWidth: `${Math.max(480, totalTime * 28)}px` }}
         >
           {uniqueTimePoints.map((time, idx) => {
             const percent = (time / totalTime) * 100;
             // Prevent clipping at the extreme left (0%) and right (100%)
             let transform = 'translateX(-50%)';
-            if (idx === 0) transform = 'translateX(0)';
-            else if (idx === uniqueTimePoints.length - 1) transform = 'translateX(-100%)';
+            let alignItems = 'center';
+            if (idx === 0) {
+              transform = 'translateX(0)';
+              alignItems = 'flex-start';
+            } else if (idx === uniqueTimePoints.length - 1) {
+              transform = 'translateX(-100%)';
+              alignItems = 'flex-end';
+            }
 
             return (
               <div
@@ -89,6 +96,7 @@ export const GanttChart: React.FC<GanttChartProps> = ({ segments, totalTime }) =
                 style={{
                   left: `${percent}%`,
                   transform,
+                  alignItems,
                 }}
               >
                 <div className="gantt-tick-mark" />
