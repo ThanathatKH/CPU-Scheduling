@@ -40,7 +40,7 @@ Tester & Video Editor: ผู้คำนวณมือเพื่อตรว
 | เครื่องมือ | วัตถุประสงค์ |
 |---|---|
 | **Antigravity IDE** | IDE หลักสำหรับพัฒนาโปรแกรม |
-| **Gemini AI** | ช่วยเขียน TOR และสร้าง Prompt |
+| **Gemini 3.6 Flash** | ช่วยเขียน TOR และสร้าง Prompt |
 | **Vercel** | Hosting และ Deployment |
 
 ### 🌐 Browser Compatibility 
@@ -383,7 +383,7 @@ npm run dev
 
 | เครื่องมือ | บทบาทหลัก | รายละเอียด |
 |:---|---|---|
-| **Gemini** | System Architect & Prompt Engineer | ช่วยออกแบบระบบและสร้าง Prompt |
+| **Gemini 3.6 Flash** | System Architect & Prompt Engineer | ช่วยออกแบบระบบและสร้าง Prompt |
 | **Antigravity IDE** | Code Generator | สร้าง Source Code จาก Prompt ที่ออกแบบไว้ |
 
 ---
